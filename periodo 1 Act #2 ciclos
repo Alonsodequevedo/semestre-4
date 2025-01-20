@@ -1,0 +1,50 @@
+public class Main {
+
+    // Método que utiliza el ciclo while
+    public static void cicloWhile() {
+        System.out.println("Ciclo while:");
+        int i = 1;
+        while (i <= 10) {
+            System.out.println(i);
+            i++;
+        }
+    }
+
+    // Método que utiliza el ciclo do-while
+    public static void cicloDoWhile() {
+        System.out.println("Ciclo do-while:");
+        int i = 1;
+        do {
+            System.out.println(i);
+            i++;
+        } while (i <= 10);
+    }
+
+    // Método que utiliza el ciclo for
+    public static void cicloFor() {
+        System.out.println("Ciclo for:");
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(i);
+        }
+    }
+
+    // Método que utiliza el ciclo for-each
+    public static void cicloForEach() {
+        System.out.println("Ciclo for-each:");
+        int[] numeros = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        for (int numero : numeros) {
+            System.out.println(numero);
+        }
+    }
+
+    // Método principal
+    public static void main(String[] args) {
+        cicloWhile();
+        System.out.println(); // Separador entre ciclos
+        cicloDoWhile();
+        System.out.println();
+        cicloFor();
+        System.out.println();
+        cicloForEach();
+    }
+}
