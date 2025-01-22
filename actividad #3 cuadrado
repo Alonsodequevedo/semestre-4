@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class Main {
+    private double lado;
+
+
+    public Main(double lado) {
+        this.lado = lado;
+    }
+
+    public double calcularDiagonal() {
+        return lado * Math.sqrt(2);
+    }
+
+
+    public double calcularPerimetro() {
+        return 4 * lado;
+    }
+
+
+    public double calcularArea() {
+        return Math.pow(lado, 2);
+    }
+
+
+    public double getLado() {
+        return lado;
+    }
+
+
+    public void setLado(double lado) {
+        this.lado = lado;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+  
+        System.out.print("Introduce la longitud del lado del cuadrado: ");
+        double ladoUsuario = scanner.nextDouble();
+
+   
+        Main cuadrado = new Main(ladoUsuario);
+
+  
+        System.out.println("Lado del cuadrado: " + cuadrado.getLado());
+        System.out.println("Diagonal del cuadrado: " + cuadrado.calcularDiagonal());
+        System.out.println("Perímetro del cuadrado: " + cuadrado.calcularPerimetro());
+        System.out.println("Área del cuadrado: " + cuadrado.calcularArea());
+
+        scanner.close(); 
+    }
+}
