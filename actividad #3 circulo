@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class Main {
+    private double radio;
+
+
+    public Main(double radio) {
+        this.radio = radio;
+    }
+
+  
+    public double calcularCircunferencia() {
+        return 2 * Math.PI * radio;
+    }
+
+
+    public double calcularArea() {
+        return Math.PI * Math.pow(radio, 2);
+    }
+
+    public double getRadio() {
+        return radio;
+    }
+
+
+    public void setRadio(double radio) {
+        this.radio = radio;
+    }
+
+    public static void main(String[] args) {
+ 
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Introduce el radio del círculo: ");
+        double radioUsuario = scanner.nextDouble(); 
+
+        Main circulo = new Main(radioUsuario);
+
+  
+        System.out.println("Radio: " + circulo.getRadio());
+        System.out.println("Circunferencia: " + circulo.calcularCircunferencia());
+        System.out.println("Área: " + circulo.calcularArea());
+
+        scanner.close(); 
+    }
+}
