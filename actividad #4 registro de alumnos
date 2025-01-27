@@ -1,0 +1,113 @@
+import java.util.Scanner;
+
+class Alumno {
+    private String nombre;
+    private String genero;
+    private String matricula;
+    private String carrera;
+    private int semestre;
+    private boolean tieneCredencial;
+
+    // Constructor
+    public Alumno(String nombre, String genero, String matricula, String carrera, int semestre, boolean tieneCredencial) {
+        this.nombre = nombre;
+        this.genero = genero;
+        this.matricula = matricula;
+        this.carrera = carrera;
+        this.semestre = semestre;
+        this.tieneCredencial = tieneCredencial;
+    }
+
+    // Método para mostrar los datos del alumno
+    public void mostrarDatos() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Género: " + genero);
+        System.out.println("Matrícula: " + matricula);
+        System.out.println("Carrera: " + carrera);
+        System.out.println("Semestre: " + semestre);
+        System.out.println("Tiene credencial: " + (tieneCredencial ? "Sí" : "No"));
+    }
+
+    // Método para obtener la matrícula del alumno
+    public String getMatricula() {
+        return matricula;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Alumno[] alumnos = new Alumno[10];
+        int contadorAlumnos = 0;
+
+        while (true) {
+            System.out.println("\nMenú:");
+            System.out.println("1. Agregar un nuevo alumno");
+            System.out.println("2. Buscar un alumno por matrícula");
+            System.out.println("3. Salir");
+            System.out.print("Elige una opción: ");
+            int opcion = scanner.nextInt();
+            scanner.nextLine(); // Limpiar buffer
+
+            switch (opcion) {
+                case 1:
+                    if (contadorAlumnos < 10) {
+                        // Solicitar datos del alumno
+                        System.out.print("Nombre: ");
+                        String nombre = scanner.nextLine();
+                        System.out.print("Género: ");
+                        String genero = scanner.nextLine();
+                        System.out.print("Matrícula: ");
+                        String matricula = scanner.nextLine();
+                        System.out.print("Carrera: ");
+                        String carrera = scanner.nextLine();
+                        System.out.print("Semestre: ");
+                        int semestre = scanner.nextInt();
+                        scanner.nextLine(); // Limpiar buffer
+
+                        // Preguntar si tiene credencial con entrada "sí" o "no"
+                        System.out.print("¿Tiene credencial? (sí/no): ");
+                        String respuesta = scanner.nextLine().trim().toLowerCase();
+                        boolean tieneCredencial = respuesta.equals("sí");
+
+                        // Crear el objeto Alumno y agregarlo al arreglo
+                        alumnos[contadorAlumnos] = new Alumno(nombre, genero, matricula, carrera, semestre, tieneCredencial);
+                        contadorAlumnos++;
+                        System.out.println("Alumno registrado con éxito.");
+                    } else {
+                        System.out.println("No se pueden agregar más alumnos. Capacidad máxima alcanzada.");
+                    }
+                    break;
+
+                case 2:
+                    // Buscar un alumno por matrícula
+                    System.out.print("Introduce la matrícula del alumno a buscar: ");
+                    String matriculaBuscar = scanner.nextLine();
+                    boolean encontrado = false;
+
+                    for (int i = 0; i < contadorAlumnos; i++) {
+                        if (alumnos[i].getMatricula().equals(matriculaBuscar)) {
+                            System.out.println("Alumno encontrado:");
+                            alumnos[i].mostrarDatos();
+                            encontrado = true;
+                            break;
+                        }
+                    }
+
+                    if (!encontrado) {
+                        System.out.println("Alumno no encontrado.");
+                    }
+                    break;
+
+                case 3:
+                    // Salir del programa
+                    System.out.println("Saliendo del programa...");
+                    scanner.close();
+                    return;
+
+                default:
+                    System.out.println("Opción no válida. Intenta de nuevo.");
+            }
+        }
+    }
+}
