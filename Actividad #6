@@ -1,0 +1,45 @@
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello World");
+
+        // a) Mostrar el valor del elemento 6 de un arreglo f.
+        int[] f = {10, 20, 30, 40, 50, 60, 70, 80};
+        System.out.println("Elemento 6 de f: " + f[5]); // Índice 5 (ya que los índices comienzan desde 0)
+
+        // b) Inicializar con 8 cada uno de los cinco elementos de un arreglo entero unidimensional g.
+        int[] g = new int[5];
+        Arrays.fill(g, 8);
+        System.out.println("Arreglo g: " + Arrays.toString(g));
+
+        // c) Sumar el total de los 100 elementos de un arreglo c de punto flotante.
+        double[] c = new double[100];
+        Arrays.fill(c, 1.5); // Ejemplo de inicialización con valores arbitrarios
+        double suma = 0;
+        for (double num : c) {
+            suma += num;
+        }
+        System.out.println("Suma de elementos en c: " + suma);
+
+        // d) Copiar el arreglo a de 11 elementos a partir de la posición 22 del arreglo b.
+        int[] a = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+        int[] b = new int[34];
+        System.arraycopy(a, 0, b, 22, a.length);
+        System.out.println("Arreglo b después de la copia: " + Arrays.toString(b));
+
+        // e) Determinar e imprimir los valores menor y mayor contenidos en el arreglo w con 99 elementos de punto flotante.
+        double[] w = new double[99];
+        for (int i = 0; i < w.length; i++) {
+            w[i] = Math.random() * 100; // Llenar con valores aleatorios
+        }
+        double min = w[0];
+        double max = w[0];
+        for (double num : w) {
+            if (num < min) min = num;
+            if (num > max) max = num;
+        }
+        System.out.println("Valor mínimo en w: " + min);
+        System.out.println("Valor máximo en w: " + max);
+    }
+}
