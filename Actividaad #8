@@ -1,0 +1,143 @@
+import java.util.Random;
+
+class Matrices {
+    
+    
+    public static int sumaDiagonal(int[][] matriz) {
+        System.out.println("Matriz utilizada para la suma diagonal:");
+        imprimirMatriz(matriz);
+        int suma = 0;
+        for (int i = 0; i < matriz.length; i++) {
+            suma += matriz[i][i];
+        }
+        return suma;
+    }
+    
+
+    public static int encontrarMaximo(int[][] matriz) {
+        System.out.println("Matriz utilizada para encontrar el número más grande:");
+        imprimirMatriz(matriz);
+        int max = matriz[0][0];
+        for (int[] fila : matriz) {
+            for (int num : fila) {
+                if (num > max) {
+                    max = num;
+                }
+            }
+        }
+        return max;
+    }
+    
+
+    public static int[][] sumaMatrices(int[][] matriz1, int[][] matriz2) {
+        System.out.println("Primera matriz para la suma:");
+        imprimirMatriz(matriz1);
+        System.out.println("Segunda matriz para la suma:");
+        imprimirMatriz(matriz2);
+        
+        int filas = matriz1.length;
+        int columnas = matriz1[0].length;
+        int[][] resultado = new int[filas][columnas];
+        
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                resultado[i][j] = matriz1[i][j] + matriz2[i][j];
+            }
+        }
+        return resultado;
+    }
+    
+
+    public static int[][] multiplicarPorEscalar(int[][] matriz, int escalar) {
+        System.out.println("Matriz original antes de la multiplicación por escalar:");
+        imprimirMatriz(matriz);
+        
+        int filas = matriz.length;
+        int columnas = matriz[0].length;
+        int[][] resultado = new int[filas][columnas];
+        
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                resultado[i][j] = matriz[i][j] * escalar;
+            }
+        }
+        return resultado;
+    }
+
+    public static int[][] multiplicarMatrices(int[][] matriz1, int[][] matriz2) {
+        int filas1 = matriz1.length;
+        int columnas1 = matriz1[0].length;
+        int columnas2 = matriz2[0].length;
+        int[][] resultado = new int[filas1][columnas2];
+        
+        for (int i = 0; i < filas1; i++) {
+            for (int j = 0; j < columnas2; j++) {
+                for (int k = 0; k < columnas1; k++) {
+                    resultado[i][j] += matriz1[i][k] * matriz2[k][j];
+                }
+            }
+        }
+        return resultado;
+    }
+    
+
+    public static int[][] transponerMatriz(int[][] matriz) {
+        System.out.println("Matriz original antes de la transposición:");
+        imprimirMatriz(matriz);
+        
+        int filas = matriz.length;
+        int columnas = matriz[0].length;
+        int[][] transpuesta = new int[columnas][filas];
+        
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                transpuesta[j][i] = matriz[i][j];
+            }
+        }
+        return transpuesta;
+    }
+    
+    public static void imprimirMatriz(int[][] matriz) {
+        for (int[] fila : matriz) {
+            for (int num : fila) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
+    }
+    
+    public static int[][] generarMatrizAleatoria(int filas, int columnas, int limite) {
+        Random rand = new Random();
+        int[][] matriz = new int[filas][columnas];
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                matriz[i][j] = rand.nextInt(limite + 1);
+            }
+        }
+        return matriz;
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        int[][] matriz = Matrices.generarMatrizAleatoria(3, 3, 10);
+        
+        System.out.println("Suma diagonal: " + Matrices.sumaDiagonal(matriz));
+        System.out.println("Máximo en la matriz: " + Matrices.encontrarMaximo(matriz));
+        
+        int[][] otraMatriz = Matrices.generarMatrizAleatoria(3, 3, 10);
+        
+        int[][] suma = Matrices.sumaMatrices(matriz, otraMatriz);
+        System.out.println("Suma de matrices:");
+        Matrices.imprimirMatriz(suma);
+        
+        int[][] multiplicada = Matrices.multiplicarPorEscalar(matriz, 2);
+        System.out.println("Matriz multiplicada por escalar 2:");
+        Matrices.imprimirMatriz(multiplicada);
+        
+        int[][] transpuesta = Matrices.transponerMatriz(matriz);
+        System.out.println("Matriz transpuesta:");
+        Matrices.imprimirMatriz(transpuesta);
+    }
+}
