@@ -1,0 +1,120 @@
+class Empleado {
+    private String nombre;
+    private String apellido;
+    private String cedula;
+    private int edad;
+    private String estadoCivil;
+    private double salario;
+
+    public Empleado() {}
+
+    public Empleado(String nombre, String apellido, String cedula, int edad, String estadoCivil, double salario) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.cedula = cedula;
+        this.edad = edad;
+        this.estadoCivil = estadoCivil;
+        this.salario = salario;
+    }
+
+    public String clasificacionPorEdad() {
+        if (edad <= 21) {
+            return "(Principiante)";
+        } else if (edad >= 22 && edad <= 35) {
+            return "(Intermedio)";
+        } else {
+            return "(Senior)";
+        }
+    }
+
+    public void imprimirDatos(String tipo) {
+        System.out.println("Datos del " + tipo + ":");
+        System.out.println("Nombre: " + nombre + " " + apellido);
+        System.out.println("Cédula: " + cedula);
+        System.out.println("Edad: " + edad + " " + clasificacionPorEdad());
+        System.out.println("Estado Civil: " + estadoCivil);
+        System.out.println("Salario: " + salario);
+        System.out.println();
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+}
+
+
+class Programador extends Empleado {
+    public Programador(String nombre, String apellido, String cedula, int edad, String estadoCivil, double salario) {
+        super(nombre, apellido, cedula, edad, estadoCivil, salario);
+    }
+}
+
+
+class Administrativo extends Empleado {
+    public Administrativo(String nombre, String apellido, String cedula, int edad, String estadoCivil, double salario) {
+        super(nombre, apellido, cedula, edad, estadoCivil, salario);
+    }
+}
+
+
+class Secretaria extends Administrativo {
+    private double prestaciones;
+    private int retardos;
+
+    public Secretaria(String nombre, String apellido, String cedula, int edad, String estadoCivil, double salario, double prestaciones, int retardos) {
+        super(nombre, apellido, cedula, edad, estadoCivil, salario);
+        this.prestaciones = prestaciones;
+        this.retardos = retardos;
+    }
+
+    public double calcularSalarioTotal() {
+        return getSalario() + prestaciones - (retardos * 100);
+    }
+
+    public void imprimirDatos() {
+        super.imprimirDatos("Secretaria");
+        System.out.println("Salario Total: " + calcularSalarioTotal());
+        System.out.println();
+    }
+}
+
+
+class Contador extends Administrativo {
+    private int cuentasACargo;
+
+    public Contador(String nombre, String apellido, String cedula, int edad, String estadoCivil, double salario, int cuentasACargo) {
+        super(nombre, apellido, cedula, edad, estadoCivil, salario);
+        this.cuentasACargo = cuentasACargo;
+    }
+
+    public double calcularSalarioTotal() {
+        double salarioTotal = getSalario();
+        if (cuentasACargo > 4) {
+            salarioTotal += salarioTotal * 0.10 * (cuentasACargo - 4);
+        }
+        return salarioTotal;
+    }
+
+    public void imprimirDatos() {
+        super.imprimirDatos("Contador");
+        System.out.println("Salario Total: " + calcularSalarioTotal());
+        System.out.println();
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        Empleado empleado = new Empleado("Diego", "Rodríguez", "48376034", 27, "casado", 63500);
+        empleado.imprimirDatos("Empleado");
+
+        Programador programador = new Programador("Santiago", "Tanus", "45829573", 32, "soltero", 83000);
+        programador.imprimirDatos("Programador");
+
+        Secretaria secretaria = new Secretaria("María", "Gutierrez", "47692769", 35, "casada", 33000, 5000, 2);
+        secretaria.imprimirDatos();
+
+        Contador contador = new Contador("Juan Carlos", "Martínez", "428968344", 44, "Casado", 110000, 6);
+        contador.imprimirDatos();
+    }
+}
