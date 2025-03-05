@@ -1,0 +1,14 @@
+class Ave extends Animal {
+    private String caracteristica;
+
+    public Ave(int edad, boolean esDomestico, String caracteristica) {
+        super("Ave", edad, esDomestico);
+        this.caracteristica = caracteristica;
+    }
+
+    @Override
+    public String hacerSonido() {
+        String[] sonidos = {"Tweet", "Squawk", "Coo", "Chirp", "Honk"};
+        return sonidos[new Random().nextInt(sonidos.length)];
+    }
+}
