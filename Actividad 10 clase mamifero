@@ -1,0 +1,14 @@
+class Mamifero extends Animal {
+    private String caracteristica;
+
+    public Mamifero(int edad, boolean esDomestico, String caracteristica) {
+        super("Mamífero", edad, esDomestico);
+        this.caracteristica = caracteristica;
+    }
+
+    @Override
+    public String hacerSonido() {
+        String[] sonidos = {"Woof", "Meow", "Roar", "Baa", "Oink"};
+        return sonidos[new Random().nextInt(sonidos.length)];
+    }
+}
