@@ -1,0 +1,14 @@
+class Pez extends Animal {
+    private String caracteristica;
+
+    public Pez(int edad, boolean esDomestico, String caracteristica) {
+        super("Pez", edad, esDomestico);
+        this.caracteristica = caracteristica;
+    }
+
+    @Override
+    public String hacerSonido() {
+        String[] sonidos = {"Blub", "Splash", "Gurgle", "Plop", "Bloop"};
+        return sonidos[new Random().nextInt(sonidos.length)];
+    }
+}
