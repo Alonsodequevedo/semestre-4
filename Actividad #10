@@ -1,0 +1,113 @@
+import java.util.Random;
+
+
+abstract class Animal {
+    private String tipo;
+    private int edad;
+    private boolean esDomestico;
+
+    public Animal(String tipo, int edad, boolean esDomestico) {
+        this.tipo = tipo;
+        this.edad = edad;
+        this.esDomestico = esDomestico;
+    }
+
+
+    public abstract String hacerSonido();
+
+
+    protected void mostrarInfo() {
+        System.out.println("Tipo de Animal: " + tipo + ", Edad: " + edad + ", Doméstico: " + esDomestico);
+    }
+
+    public String getTipo() { return tipo; }
+    public void setTipo(String tipo) { this.tipo = tipo; }
+    public int getEdad() { return edad; }
+    public void setEdad(int edad) { this.edad = edad; }
+    public boolean isEsDomestico() { return esDomestico; }
+    public void setEsDomestico(boolean esDomestico) { this.esDomestico = esDomestico; }
+}
+
+
+class Mamifero extends Animal {
+    private String caracteristica;
+
+    public Mamifero(int edad, boolean esDomestico, String caracteristica) {
+        super("Mamífero", edad, esDomestico);
+        this.caracteristica = caracteristica;
+    }
+
+    @Override
+    public String hacerSonido() {
+        String[] sonidos = {"Woof", "Meow", "Roar", "Baa", "Oink"};
+        return sonidos[new Random().nextInt(sonidos.length)];
+    }
+}
+
+
+class Ave extends Animal {
+    private String caracteristica;
+
+    public Ave(int edad, boolean esDomestico, String caracteristica) {
+        super("Ave", edad, esDomestico);
+        this.caracteristica = caracteristica;
+    }
+
+    @Override
+    public String hacerSonido() {
+        String[] sonidos = {"Tweet", "Squawk", "Coo", "Chirp", "Honk"};
+        return sonidos[new Random().nextInt(sonidos.length)];
+    }
+}
+
+
+class Pez extends Animal {
+    private String caracteristica;
+
+    public Pez(int edad, boolean esDomestico, String caracteristica) {
+        super("Pez", edad, esDomestico);
+        this.caracteristica = caracteristica;
+    }
+
+    @Override
+    public String hacerSonido() {
+        String[] sonidos = {"Blub", "Splash", "Gurgle", "Plop", "Bloop"};
+        return sonidos[new Random().nextInt(sonidos.length)];
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        Random rand = new Random();
+        Animal[] animales = new Animal[10];
+        String[] caracteristicas = {"Patas", "Alas", "Aletas", "Pelo", "Plumas"};
+        
+        for (int i = 0; i < animales.length; i++) {
+            int tipo = rand.nextInt(3); // Elegir aleatoriamente entre Mamífero, Ave, Pez
+            int edad = rand.nextInt(15) + 1;
+            boolean esDomestico = rand.nextBoolean();
+            String caracteristica = caracteristicas[rand.nextInt(caracteristicas.length)];
+            
+            switch (tipo) {
+                case 0:
+                    animales[i] = new Mamifero(edad, esDomestico, caracteristica);
+                    break;
+                case 1:
+                    animales[i] = new Ave(edad, esDomestico, caracteristica);
+                    break;
+                case 2:
+                    animales[i] = new Pez(edad, esDomestico, caracteristica);
+                    break;
+            }
+        }
+        
+
+        for (Animal animal : animales) {
+            animal.mostrarInfo();
+            System.out.println("Característica: " + caracteristicas[new Random().nextInt(caracteristicas.length)]);
+            System.out.println("Sonido: " + animal.hacerSonido());
+            System.out.println();
+        }
+    }
+}
