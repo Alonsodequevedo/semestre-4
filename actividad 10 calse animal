@@ -1,0 +1,10 @@
+abstract class Animal {
+    private String tipo;
+    private int edad;
+    private boolean esDomestico;
+
+    public Animal(String tipo, int edad, boolean esDomestico) {
+        this.tipo = tipo;
+        this.edad = edad;
+        this.esDomestico = esDomestico;
+    }
